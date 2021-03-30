@@ -30,6 +30,7 @@ module.exports.postSinglePing = (req, res) => {
                 result
             });
     }).catch(err => {
+        console.error(err)
         return res
             .status(500)
             .json({
@@ -56,6 +57,7 @@ module.exports.getSinglePing = async (req, res) => {
                 result
             });
     }).catch(err => {
+        console.error(err)
         return res
             .status(500)
             .json({
