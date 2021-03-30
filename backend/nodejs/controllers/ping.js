@@ -29,6 +29,13 @@ module.exports.postSinglePing = (req, res) => {
                 status: 'ok',
                 result
             });
+    }).catch(err => {
+        return res
+            .status(500)
+            .json({
+                status: 'error',
+                error: err
+            })
     });
 };
 
@@ -48,5 +55,12 @@ module.exports.getSinglePing = async (req, res) => {
                 status: 'ok',
                 result
             });
+    }).catch(err => {
+        return res
+            .status(500)
+            .json({
+                status: 'error',
+                error: err
+            })
     });
 };
