@@ -1,0 +1,15 @@
+[homeTitle]
+other = "Is Peter online?"
+
+[homeDescription]
+other = "We will see."
+
+[wordCount]
+other = "This article has {{ .WordCount }} words."
+
+[readingTime]
+one = "One minute to read"
+other = "{{.Count}} minutes to read"
+
+[readArticle]
+other = "Read article"

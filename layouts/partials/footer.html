@@ -1,0 +1,5 @@
+<footer class="o-footer">
+    &#169; Copyright {{ dateFormat "2006" now }} Lukáš Matuška
+</footer>
+{{ $darkmode := resources.Get "js/darkmode.js" | minify }}
+<script src="{{ $darkmode.RelPermalink }}"></script>

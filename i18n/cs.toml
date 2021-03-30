@@ -1,0 +1,12 @@
+[homeTitle]
+other = "Je Petr online?"
+
+[homeDescription]
+other = "To se hned dozvíme"
+
+[readingTime]
+one = "Minuta čtení"
+other = "{{.Count}} minut čtení"
+
+[readArticle]
+other = "Číst článek"
