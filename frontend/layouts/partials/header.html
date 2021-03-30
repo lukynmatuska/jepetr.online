@@ -1,16 +1,15 @@
 <header class="o-header">
-    <!-- <nav class="o-nav">
+    <nav class="o-nav">
         <ul class="o-nav__list">
-            {{ $currentPage := . }}
-            {{ range .Site.Menus.main }}
-            <li class="o-nav__item">
-                <a class="o-nav__link {{ if $currentPage.IsMenuCurrent " main" . }}active{{ end }}" href="{{ .URL }}">
-                    {{ .Name }}
+            {{ range .Site.Params.links }}
+            <li class="o-nav__icon">
+                <a href="{{ .url | safeURL }}" target="_blank" title="{{ .title }}" class="o-nav__link">
+                    <i class="{{ .iconset | default " fab" }} {{.iconorigin | default "fa" }}-{{ .icon }}"></i>
                 </a>
             </li>
-            {{- end }}
+            {{ end }}
         </ul>
-    </nav> -->
+    </nav>
     {{ if .Site.IsMultiLingual }}
     <nav class="o-nav language-nav">
         <ul class="o-nav__list">

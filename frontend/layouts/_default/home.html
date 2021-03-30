@@ -1,12 +1,33 @@
 {{ define "main" }}
 <main class="home">
     <h1 class="text-center">{{ i18n "homeTitle" }}</h1>
-    <p class="text-center">{{ i18n "homeDescription" }}</p>
-    <div class="text-center links">
-        {{ range .Site.Params.links }}
-        <a href="{{ .url | safeURL }}" target="_blank" title="{{ .title }}"><i class="{{ .iconset | default " fab" }}
-                {{.iconorigin | default "fa" }}-{{ .icon }}"></i></a>
-        {{ end }}
+    <div class="description">
+        <p class="text-center" id="homeDescription">{{ i18n "homeDescription" }}</p>
+        <p class="text-center mt-1 fs25" id="loading">
+            <i class="fas fa-sync fa-spin"></i>
+        </p>
+        <p class="text-center" id="log"></p>
     </div>
 </main>
+{{ $api := resources.Get "js/apiclient.class.js" | minify }}
+<script src="{{ $api.RelPermalink }}"></script>
+<script>
+    window.onload = function () {
+        const apiClient = new APIClient('https://api.jepetr.online');
+        apiClient.ping('petr.jepetr.online', { timeout: 2 }).then(res => {
+            console.log(res);
+            let logDOM = document.getElementById('log');
+            let color = 'red';
+            if (res.result.alive) {
+                color = 'green';
+            }
+            document.getElementById('homeDescription').style = 'display: none;';
+            let log = res.result.output.replace(/\n/g, '<br>');
+            logDOM.innerHTML = log;
+            logDOM.style.color = color;
+            document.getElementById('loading').style = 'display: none;';
+
+        });
+    }
+</script>
 {{ end }}
