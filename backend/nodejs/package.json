@@ -1,0 +1,26 @@
+{
+  "name": "jepetr.online",
+  "version": "1.0.0",
+  "description": "simple web api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/lukasmatuska.cz/jepetr.online"
+  },
+  "keywords": [
+    "ping"
+  ],
+  "author": "Lukas Matuska",
+  "license": "Beerware",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "path": "^0.12.7",
+    "ping": "^0.4.0"
+  }
+}
