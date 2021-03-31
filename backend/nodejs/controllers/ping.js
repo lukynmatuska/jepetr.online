@@ -22,7 +22,7 @@ module.exports.postSinglePing = (req, res) => {
                 error: 'bad-host'
             });
     }
-    singlePing(req.body.host, req.body.config).then(result => {
+    singlePing(req.body.host).then(result => {
         return res
             .status(200)
             .json({
