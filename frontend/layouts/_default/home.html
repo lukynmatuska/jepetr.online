@@ -14,8 +14,8 @@
 <script>
     window.onload = function () {
         const apiClient = new APIClient('https://petrapi.lukasmatuska.online');
-        apiClient.ping('petr.jepetr.online', { timeout: 2 }).then(res => {
-            console.log(res);
+        apiClient.ping('petr.jepetr.online').then(res => {
+            // console.log(res);
             let logDOM = document.getElementById('log');
             let color = 'red';
             if (res.result.alive) {

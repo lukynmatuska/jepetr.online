@@ -47,7 +47,7 @@ class APIClient {
         return response.json()
     }
 
-    ping(host, config) {
-        return this.postData('/ping/single', { host, config })
+    ping(host) {
+        return this.postData('/ping/single', { host })
     }
 }
