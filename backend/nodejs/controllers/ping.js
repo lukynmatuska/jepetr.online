@@ -28,7 +28,11 @@ module.exports.postSinglePing = (req, res) => {
             });
     }
     this.singlePing(
-        req.body.host
+        req.body.host,
+        {
+            timeout: 10,
+            extra: ['-c', '5'],
+        },
     ).then(result => {
         return res
             .status(200)
@@ -57,7 +61,11 @@ module.exports.getSinglePing = (req, res) => {
             });
     }
     this.singlePing(
-        req.params.host
+        req.params.host,
+        {
+            timeout: 10,
+            extra: ['-c', '5'],
+        },
     ).then(result => {
         return res
             .status(200)
