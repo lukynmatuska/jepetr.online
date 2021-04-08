@@ -28,7 +28,6 @@ const emailController = require('./email');
 new CronJob(
     global.CONFIG.cron.timer,
     () => {
-        console.log('running cron')
         pingController.singlePing(
             global.CONFIG.cron.ping.host,
             global.CONFIG.cron.ping.config
