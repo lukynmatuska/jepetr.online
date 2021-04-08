@@ -31,7 +31,7 @@ module.exports.postSinglePing = (req, res) => {
         req.body.host,
         {
             timeout: 10,
-            extra: ['-c', '5'],
+            extra: ['-c', '3'],
         },
     ).then(result => {
         return res
@@ -64,7 +64,7 @@ module.exports.getSinglePing = (req, res) => {
         req.params.host,
         {
             timeout: 10,
-            extra: ['-c', '5'],
+            extra: ['-c', '3'],
         },
     ).then(result => {
         return res
