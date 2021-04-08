@@ -9,11 +9,8 @@
         <p class="text-center" id="log"></p>
     </div>
 </main>
-{{ $api := resources.Get "js/apiclient.class.js" | minify }}
-<script src="{{ $api.RelPermalink }}"></script>
 <script>
     window.onload = function () {
-        const apiClient = new APIClient('https://petrapi.lukasmatuska.online');
         apiClient.ping('termius.eu').then(res => {
             let logDOM = document.getElementById('log');
             let color = 'red';

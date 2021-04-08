@@ -1,0 +1,23 @@
+{{ define "main" }}
+<main class="o-main">
+    <h1>{{ .Title }}</h1>
+    {{ .Content}}
+    <canvas id="ping-chart"></canvas>
+</main>
+<script src="/js/chart.min.js"></script>
+<script>
+    window.onload = function () {
+        const pingChartCanvas = document.getElementById('ping-chart');
+        apiClient.getDataForChart().then(res => {
+            console.log(res)
+            const pingChart = new Chart(
+                pingChartCanvas,
+                {
+                    type: 'line',
+                    data: res.data,
+                }
+            );
+        });
+    }
+</script>
+{{ end }}

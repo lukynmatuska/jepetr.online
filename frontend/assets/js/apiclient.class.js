@@ -23,7 +23,7 @@ class APIClient {
     }
 
     async getData(path = '', data = {}) {
-        const url = new URL(window.location.origin + this.endpointUrl + path)
+        const url = new URL(this.endpointUrl + path)
         const keys = Object.keys(data)
         const values = Object.values(data)
         for (let i = 0; i < values.length; i++) {
@@ -49,5 +49,9 @@ class APIClient {
 
     ping(host) {
         return this.postData('/ping/single', { host })
+    }
+
+    getDataForChart() {
+        return this.getData('/chart/ping');
     }
 }
