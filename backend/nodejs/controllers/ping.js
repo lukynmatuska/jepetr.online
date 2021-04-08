@@ -135,3 +135,59 @@ module.exports.getWithFilter = (req, res) => {
             });
     });
 };
+
+async function getDataForChartFromMongoResult(resultFromMongo, host) {
+    const ret = {
+        labels: [],
+        datasets: [{
+            label: host,
+            data: [],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1,
+        }],
+    };
+    for (const obj of resultFromMongo) {
+        ret.labels.push(obj._id)
+        let sumOfFloats = 0;
+        for (const str of obj.data) {
+            sumOfFloats += parseFloat(str);
+        }
+        const avg = sumOfFloats / obj.data.length;
+        ret.datasets[0].data.push(avg)
+    }
+    return ret
+}
+
+module.exports.getDataForChart = (req, res) => {
+    const host = 'termius.eu';
+    Ping
+        .aggregate([{ $match: { 'result.host': host } }])
+        .group({
+            _id: {
+                $dateToString: {
+                    // format: "%Y-%m-%d %H:%M",
+                    format: "%Y-%m-%d %H",
+                    date: "$date",
+                },
+            },
+            data: {
+                $push: '$result.avg',
+            },
+            // description: {
+            //     $push: '$result.output',
+            // },
+        })
+        .exec(async (err, mongoRes) => {
+            if (err) {
+                console.error(err);
+            }
+            const data = await getDataForChartFromMongoResult(mongoRes, host);
+            return res
+                .status(200)
+                .json({
+                    status: 'ok',
+                    data,
+                });
+        });
+};

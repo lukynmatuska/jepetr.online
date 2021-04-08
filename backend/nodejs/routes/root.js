@@ -51,7 +51,10 @@ router.get('/500', (req, res) => {
 router.get('/ping/single/:host', pingController.getSinglePing);
 router.post('/ping/single', pingController.postSinglePing);
 
-router.get('/ping', pingController.getAll);
+router.get('/ping/all', pingController.getAll);
+router.get('/ping', pingController.getWithFilter);
+router.get('/chart/ping', pingController.getDataForChart);
+
 /**
  * Not found route
  */
