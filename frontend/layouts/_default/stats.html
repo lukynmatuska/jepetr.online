@@ -10,11 +10,12 @@
         const pingChartCanvas = document.getElementById('ping-chart');
         apiClient.getDataForChart().then(res => {
             console.log(res)
+            let dataForChart = res.data;
             const pingChart = new Chart(
                 pingChartCanvas,
                 {
                     type: 'line',
-                    data: res.data,
+                    data: dataForChart,
                 }
             );
         });
