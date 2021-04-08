@@ -181,6 +181,7 @@ module.exports.getDataForChart = (req, res) => {
             //     $push: '$result.output',
             // },
         })
+        .sort({ _id: 'ascending' })
         .exec(async (err, mongoRes) => {
             if (err) {
                 console.error(err);
