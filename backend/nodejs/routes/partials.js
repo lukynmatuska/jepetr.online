@@ -8,12 +8,12 @@
 /**
  * Express router API
  */
-const router = require('express').Router()
+const router = require('express').Router();
 
 /**
  * Libs
  */
-const moment = require('../libs/moment')
+const moment = require('../libs/moment');
 
 /**
  * Controllers
@@ -23,12 +23,12 @@ module.exports.setLocalVariables = (req, res, next) => {
   res.locals = {
     currentPath: req.originalUrl,
     moment,
-  }
-  next()
-}
-router.all('*', this.setLocalVariables)
+  };
+  next();
+};
+router.all('*', this.setLocalVariables);
 
 /**
  * Export the router
  */
-module.exports.router = router
+module.exports.router = router;

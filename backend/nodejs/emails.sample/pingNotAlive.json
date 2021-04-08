@@ -1,0 +1,9 @@
+{
+  "name": "Host isn't alive",
+  "subject": "<%= data.host %> isn't alive.",
+  "body": {
+    "text": "<%= data.host %> isn't alive.\n<%= data.ping.output %>",
+    "html": "<%= data.host %> isn't alive.<br><br><%- data.ping.html %>"
+  },
+  "attachments": []
+}

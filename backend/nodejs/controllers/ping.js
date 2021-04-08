@@ -9,7 +9,12 @@
  */
 const ping = require('ping');
 
-async function singlePing(host, config) {
+/**
+ * Models
+ */
+const Ping = require('../models/Ping');
+
+module.exports.singlePing = (host, config) => {
     return ping.promise.probe(host, config);
 }
 
@@ -22,7 +27,9 @@ module.exports.postSinglePing = (req, res) => {
                 error: 'bad-host'
             });
     }
-    singlePing(req.body.host).then(result => {
+    singlePing(
+        req.body.host
+    ).then(result => {
         return res
             .status(200)
             .json({
@@ -36,11 +43,11 @@ module.exports.postSinglePing = (req, res) => {
             .json({
                 status: 'error',
                 error: err
-            })
+            });
     });
 };
 
-module.exports.getSinglePing = async (req, res) => {
+module.exports.getSinglePing = (req, res) => {
     if (!req.params.host) {
         return res
             .status(422)
@@ -49,7 +56,9 @@ module.exports.getSinglePing = async (req, res) => {
                 error: 'bad-host'
             });
     }
-    singlePing(req.params.host).then((result) => {
+    singlePing(
+        req.params.host
+    ).then(result => {
         return res
             .status(200)
             .json({
@@ -63,6 +72,58 @@ module.exports.getSinglePing = async (req, res) => {
             .json({
                 status: 'error',
                 error: err
+            });
+    });
+};
+
+module.exports.getAll = (req, res) => {
+    Ping.find(
+        {}
+    ).exec((err, result) => {
+        if (err) {
+            console.error(err);
+            return res
+                .status(500)
+                .json({
+                    status: 'error',
+                    error: err
+                });
+        }
+        return res
+            .status(200)
+            .json({
+                status: 'ok',
+                data: result
+            });
+    });
+};
+
+module.exports.getWithFilter = (req, res) => {
+    if (!req.query.filter) {
+        return res
+            .status(422)
+            .json({
+                status: 'error',
+                error: 'not-send-filter'
             })
+    }
+    Ping.find(
+        req.query.filter
+    ).exec((err, result) => {
+        if (err) {
+            console.error(err);
+            return res
+                .status(500)
+                .json({
+                    status: 'error',
+                    error: err
+                });
+        }
+        return res
+            .status(200)
+            .json({
+                status: 'ok',
+                data: result
+            });
     });
 };
