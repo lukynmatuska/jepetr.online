@@ -151,6 +151,9 @@ async function getDataForChartFromMongoResult(resultFromMongo, host) {
         ret.labels.push(obj._id)
         let sumOfFloats = 0;
         for (const str of obj.data) {
+            if (str === 'unknown') {
+                continue;
+            }
             sumOfFloats += parseFloat(str);
         }
         const avg = sumOfFloats / obj.data.length;
@@ -160,14 +163,14 @@ async function getDataForChartFromMongoResult(resultFromMongo, host) {
 }
 
 module.exports.getDataForChart = (req, res) => {
-    const host = 'termius.eu';
+    const host = global.CONFIG.cron.ping.host;
     Ping
         .aggregate([{ $match: { 'result.host': host } }])
         .group({
             _id: {
                 $dateToString: {
-                    // format: "%Y-%m-%d %H:%M",
-                    format: "%Y-%m-%d %H",
+                    format: "%Y-%m-%d %H:%M",
+                    // format: "%Y-%m-%d %H",
                     date: "$date",
                 },
             },
