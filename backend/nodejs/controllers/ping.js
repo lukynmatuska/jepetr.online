@@ -27,7 +27,7 @@ module.exports.postSinglePing = (req, res) => {
                 error: 'bad-host'
             });
     }
-    singlePing(
+    this.singlePing(
         req.body.host
     ).then(result => {
         return res
@@ -56,7 +56,7 @@ module.exports.getSinglePing = (req, res) => {
                 error: 'bad-host'
             });
     }
-    singlePing(
+    this.singlePing(
         req.params.host
     ).then(result => {
         return res
