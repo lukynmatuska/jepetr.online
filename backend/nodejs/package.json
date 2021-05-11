@@ -23,8 +23,8 @@
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "moment": "^2.29.1",
-    "mongoose": "^5.12.3",
-    "nodemailer": "^6.5.0",
+    "mongoose": "^5.12.8",
+    "nodemailer": "^6.6.0",
     "path": "^0.12.7",
     "ping": "^0.4.1"
   }
