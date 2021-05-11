@@ -261,6 +261,10 @@ main.notfound a {
   /* margin-top: 1rem; */
 }
 
+.o-main#stats {
+  max-width: 900px !important;
+}
+
 .o-footer {
   text-align: center;
   padding: 1rem;
