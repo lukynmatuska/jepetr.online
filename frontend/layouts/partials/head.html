@@ -53,6 +53,6 @@
     {{ $api := resources.Get "js/apiclient.class.js" | minify }}
     <script src="{{ $api.RelPermalink }}"></script>
     <script>
-        const apiClient = new APIClient('https://petrapi.lukasmatuska.online');
+        const apiClient = new APIClient('https://api.jepetr.online');
     </script>
 </head>
