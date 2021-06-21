@@ -13,3 +13,9 @@ other = "{{.Count}} minutes to read"
 
 [readArticle]
 other = "Read article"
+
+[peterIsOnline]
+other = "Peter is online"
+
+[peterIsNotOnline]
+other = "Peter isn't online"

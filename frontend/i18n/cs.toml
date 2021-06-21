@@ -10,3 +10,9 @@ other = "{{.Count}} minut čtení"
 
 [readArticle]
 other = "Číst článek"
+
+[peterIsOnline]
+other = "Petr je online"
+
+[peterIsNotOnline]
+other = "Petr není online"

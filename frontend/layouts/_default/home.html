@@ -1,6 +1,6 @@
 {{ define "main" }}
 <main class="home">
-    <h1 class="text-center">{{ i18n "homeTitle" }}</h1>
+    <h1 class="text-center" id="home-title">{{ i18n "homeTitle" }}</h1>
     <div class="description">
         <p class="text-center" id="homeDescription">{{ i18n "homeDescription" }}</p>
         <p class="text-center mt-1 fs25" id="loading">
@@ -13,16 +13,19 @@
     window.onload = function () {
         apiClient.ping('termius.eu').then(res => {
             let logDOM = document.getElementById('log');
+            let homeTitleDOM = document.getElementById('home-title');
             let color = 'red';
             if (res.result.alive) {
                 color = 'green';
+                homeTitleDOM.innerText = '{{ i18n "peterIsOnline" }}.';
+            } else {
+                homeTitleDOM.innerText = '{{ i18n "peterIsNotOnline" }}!';
             }
             document.getElementById('homeDescription').style = 'display: none;';
             let log = res.result.output.replace(/\n/g, '<br>');
             logDOM.innerHTML = log;
             logDOM.style.color = color;
             document.getElementById('loading').style = 'display: none;';
-
         });
     }
 </script>
